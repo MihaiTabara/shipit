@@ -388,6 +388,9 @@ def enable_product(product, branch):
 
 def _suggest_partials(product, branch, version, max_partials=3):
     """Return a list of suggested partials"""
+    # HACK: try only for now
+    if branch == "try":
+        max_partials = 1
     shipped_releases = reversed(list_releases(product, branch, status=["shipped"]))
     suggested_releases = list(shipped_releases)[:max_partials]
     suggested_partials = {}
